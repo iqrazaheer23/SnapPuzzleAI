@@ -25,13 +25,11 @@ limiter = Limiter(
 )
 
 # CORS - update for production
-CORS(app, resources={
-    r"/api/*": {
-        "origins": os.getenv('FRONTEND_URL', '*').split(','),
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
-    }
-})
+CORS(
+    app,
+    resources={r"/api/*": {"origins": "*"}},
+    supports_credentials=True
+)
 
 # Database connection
 try:
